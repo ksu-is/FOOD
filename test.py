@@ -1,5 +1,6 @@
 import requests
 import json
+import random
 
 client_id = "CuyK_Nviuv3km8gryYuiqg"
 api_key = "tGjtDDhoM96gsB8uJc8qEiBXB-xcU-60aXJ8yZfT9aBArhjYB1wplGaZNYIKUUyk-g5bvqkY2gZzdIsWKwbdoGudeRMXXTUiA1JjLAIY-kRnjy6eRnWjUK6fPOP2YHYx"
@@ -18,15 +19,31 @@ req=requests.get(url, params=search_terms, headers=headers)
 parsed_input = json.loads(req.text)
 
 results = parsed_input["businesses"]
-
+item_count = 0
 for i in results:
     if i["name"] == "Tacos Del Chavo":
+        
         #print (i)
         break
     else:
         pass
 
+rest_id = []
 for i in results:
-    print ("<a href=\"" + i["url"] + "\">" + i["name"] + "</a>")
+#    item_count += 1
+#    print ("<a href=\"" + i["url"] + "\">" + i["name"] + "</a>")
+    rest_id.append(i["id"])
 
 #print (results)
+#print ("Count:", item_count)
+print ("Rest_id:", rest_id)
+print ("Length:", len(rest_id))
+lucky_strike = random.randint(0,19)
+print ("LS:", lucky_strike)
+for i in results:
+    if i["id"] == rest_id[lucky_strike]:
+        print ("Congratulations! You're going to", i["name"])
+        print ("<a href=\"" + i["url"] + "\">" + i["name"] + "</a>")
+    else:
+        pass
+
