@@ -8,7 +8,8 @@ headers = {'Authorization': 'Bearer %s' % api_key}
 
 url='https://api.yelp.com/v3/businesses/search'
 
-search_terms = {'categories':'mexican','location':'30144'}
+search_terms = {'categories':'mexican','location':'30144', 'radius':'2000'}
+#search_terms = {'categories':'mexican','location':'30144'}
 
 # Making a get request to the API
 req=requests.get(url, params=search_terms, headers=headers)
@@ -30,20 +31,20 @@ for i in results:
 
 rest_id = []
 for i in results:
-#    item_count += 1
+    item_count += 1
 #    print ("<a href=\"" + i["url"] + "\">" + i["name"] + "</a>")
     rest_id.append(i["id"])
 
-#print (results)
-#print ("Count:", item_count)
-print ("Rest_id:", rest_id)
-print ("Length:", len(rest_id))
-lucky_strike = random.randint(0,19)
-print ("LS:", lucky_strike)
-for i in results:
-    if i["id"] == rest_id[lucky_strike]:
-        print ("Congratulations! You're going to", i["name"])
-        print ("<a href=\"" + i["url"] + "\">" + i["name"] + "</a>")
-    else:
-        pass
+print (results)
+print ("Count:", item_count)
+#print ("Rest_id:", rest_id)
+#print ("Length:", len(rest_id))
+#lucky_strike = random.randint(0,19)
+#print ("LS:", lucky_strike)
+#for i in results:
+#    if i["id"] == rest_id[lucky_strike]:
+#        print ("Congratulations! You're going to", i["name"])
+#         print ("<a href=\"" + i["url"] + "\">" + i["name"] + "</a>")
+#    else:
+#        pass
 

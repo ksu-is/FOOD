@@ -1,6 +1,6 @@
-# FOOD
-# Random Restaurant Picker
-
+# FOOD - Food Options Obtained Decisively
+## Random Restaurant Picker
+---
 
 ### Version 0.02 - Sam Davis
 
