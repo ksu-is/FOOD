@@ -4,6 +4,8 @@ Random Restaurant Picker
 
 Version 0.02 - Sam Davis
 
+The only two files that matter are Food_tkinter.py (main program) and Yelp_Functions.py (functions relating to yelp)
+
 -The gui and logic both work.
 -Need to add catches for invalid entries
 -Need to add more options
@@ -12,6 +14,7 @@ Version 0.02 - Sam Davis
 -Need to clean up result message.
 -Need to polish the UI
 -Add a round button?
+-Need to clean up unecessary files.
 
 ------
 Version 0.01 - Sam Davis
