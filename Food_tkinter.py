@@ -2,16 +2,47 @@ from tkinter import *
 from tkinter import messagebox
 from Yelp_Functions import *
 import random
+import math
 
 
 # A function to ensure a required field is not empty. This used to 
 # prevent the zip code box from being left empty
 # credit to stack overflow user Er. M S Dandyan
-def check_empty_zipCode() :
-    if zipCodeEntry.get():
+def check_empty_choices() :
+
+    digits = str(zipCodeEntry.get())
+
+    if digits == "":
+        messagebox.showwarning(title="No Zip Code",message="A zipcode must be entered.")
+        return
+    else:
+        if len(digits) == 5:
+            try:
+                int(digits)
+            except:
+                messagebox.showwarning(title="Invalid Zip Code", message="Zip Code must be all digits.")
+                return
+        else:
+            messagebox.showwarning(title="Invalid Zip Code", message="Zip Code must be 5 numeric digits.")    
+            return
+        
+    
+    # Initialize the list to hold the acceptable genres
+    genresList = []
+
+    # This is the logic that assmbles the list of acceptable genres for the search.
+    for i in masterGenreList:
+        if i.get() != "0":
+            genresList.append(i.get().capitalize())
+   
+    # Convert the genre list to a string
+    global genres
+    genres = ", ".join(genresList)
+    
+    if genres:
         myClick()
     else:
-        messagebox.showwarning(title="No Zip Code",message="A zipcode must be entered.")
+        messagebox.showwarning(title="No Genres",message="You must select at least one food genre.")
 
 # This function picks a random resturant from the Yelp results
 def rand_resturaunt(results_list):
@@ -81,19 +112,8 @@ def clearAll():
 # The logic for what happens when you clike the big red button.
 def myClick():
 
-    # Initialize the list to hold the acceptable genres
-    genresList = []
-
-    # This is the logic that assmbles the list of acceptable genres for the search.
-    for i in masterGenreList:
-        if i.get() != "0":
-            genresList.append(i.get().capitalize())
-   
-    # Convert the genre list to a string
-    genres = ", ".join(genresList)
-
     # Assemble and display the confirmation message
-    outputMessage = "Zip Code: " + str(zipCodeEntry.get() + "\nGenres selected: \n" + genres + "\n\nProceed?")
+    outputMessage = "Zip Code: " + str(zipCodeEntry.get() + "\n\nGenres selected: \n\n" + genres + "\n\nProceed?")
     resultAcceptable = messagebox.askyesno("Your Selections", outputMessage)
     
     # Get the zip code from the input
@@ -145,7 +165,7 @@ zipCodeFrame = LabelFrame(root, padx=5, pady=5)
 #Setup the label for the zip code entry box
 zipCodeText = StringVar()
 zipCodelabel = Label(zipCodeFrame, textvariable=zipCodeText)
-zipCodeText.set("Enter your zip code:")
+zipCodeText.set("Enter your 5 digit zip code:")
 zipCodelabel.grid(row=0, column=0)
 
 # Setup the zip code input and put it in the zip code frame
@@ -323,8 +343,7 @@ vietnameseBox.grid(row=6, column=5)
 
 #Setup Action buttons
 foodButtonFrame = LabelFrame(root, text="Show me where I'm eating!", padx=5, pady=5)
-foodButton = Button(foodButtonFrame, text="FOOD!", command=check_empty_zipCode, bg="red", pady=20, padx=20)
-#foodButton = Button(foodButtonFrame, text="FOOD!", command=myClick, bg="red", pady=20, padx=20)
+foodButton = Button(foodButtonFrame, text="FOOD!", command=check_empty_choices, bg="red", pady=20, padx=20)
 foodButton.pack()
 
 # setup a button to clear/reset the entry form

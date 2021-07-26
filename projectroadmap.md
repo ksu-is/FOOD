@@ -7,6 +7,6 @@
 - [ ] Need to add logic for handling retrys and killing the program upon acceptance of results
 - [ ] Need to clean up result message.
 - [ ] Need to polish the UI
-- [ ] Add a round button?
+- [X] Add a round button? - Decided against this.
 - [X] Need to clean up unecessary files.
 - [X] Add radius seatch
