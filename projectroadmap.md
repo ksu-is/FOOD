@@ -1,9 +1,9 @@
 - [X] Create the functions to interface with Yelp
 - [X] Create the functions to create the GUI
 - [X] Tie the gui and yelp logic together
-- [ ] Need to add catches for invalid entries
-- [ ] Need to add more options
-- [ ] Need to add comments
+- [X] Need to add catches for invalid entries
+- [X] Need to add more options
+- [X] Need to add comments
 - [ ] Need to add logic for handling retrys and killing the program upon acceptance of results
 - [ ] Need to clean up result message.
 - [ ] Need to polish the UI

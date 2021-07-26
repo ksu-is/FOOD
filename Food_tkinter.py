@@ -3,6 +3,16 @@ from tkinter import messagebox
 from Yelp_Functions import *
 import random
 
+
+# A function to ensure a required field is not empty. This used to 
+# prevent the zip code box from being left empty
+# credit to stack overflow user Er. M S Dandyan
+def check_empty_zipCode() :
+    if zipCodeEntry.get():
+        myClick()
+    else:
+        messagebox.showwarning(title="No Zip Code",message="A zipcode must be entered.")
+
 # This function picks a random resturant from the Yelp results
 def rand_resturaunt(results_list):
 
@@ -32,9 +42,41 @@ def rand_resturaunt(results_list):
 def clearAll():
     zipCodeEntry.delete(0, END)
     americanBox.deselect()
+    bagelsBox.deselect()
+    barbequeBox.deselect()
+    brazilianBox.deselect()
+    breakfastBox.deselect()
+    buffetsBox.deselect()
+    burgersBox.deselect()
+    cafeteriaBox.deselect()
+    cajunBox.deselect()
+    caribbeanBox.deselect()
+    cheesesteaksBox.deselect()
     chineseBox.deselect()
+    cubanBox.deselect()
+    delisBox.deselect()
+    dinersBox.deselect()
+    fastfoodBox.deselect()
+    gastropubsBox.deselect()
+    indianBox.deselect()
+    italianBox.deselect()
+    japaneseBox.deselect()
+    koreanBox.deselect()
+    mediterraneanBox.deselect()
     mexicanBox.deselect()
+    middleeasternBox.deselect()
+    noodlesBox.deselect()
+    pizzaBox.deselect()
+    ramenBox.deselect()
+    sandwichesBox.deselect()
+    seafoodBox.deselect()
     southernBox.deselect()
+    steakhousesBox.deselect()
+    sushiBox.deselect()
+    tacosBox.deselect()
+    thaiBox.deselect()
+    vegetarianBox.deselect()
+    vietnameseBox.deselect()
 
 # The logic for what happens when you clike the big red button.
 def myClick():
@@ -42,11 +84,8 @@ def myClick():
     # Initialize the list to hold the acceptable genres
     genresList = []
 
-    # A master list of genres
-    masterList = [american, chinese, mexican, southern]
-
     # This is the logic that assmbles the list of acceptable genres for the search.
-    for i in masterList:
+    for i in masterGenreList:
         if i.get() != "0":
             genresList.append(i.get().capitalize())
    
@@ -59,7 +98,7 @@ def myClick():
     
     # Get the zip code from the input
     zipCode = zipCodeEntry.get()
-    #zipCodeEntry.delete(0, END)
+    
 
     #Get the radius entry
     radiusValue = int(radius.get())
@@ -75,9 +114,6 @@ def myClick():
         #else set it to Yelp's maxumum search radius
         radiusValue = 40000
 
-    print (radiusValue)
-
-
     # Confirm the pending search before proceeding
     if resultAcceptable:
         #setup the search terms
@@ -91,12 +127,9 @@ def myClick():
 
     #If not confirmed, reset and start again
     else:
-        zipCodeEntry.delete(0, END)
-        americanBox.deselect()
-        chineseBox.deselect()
-        mexicanBox.deselect()
-        southernBox.deselect()
-    #print (results)
+       clearAll()
+
+    
 
 
 
@@ -134,9 +167,45 @@ radiusEntry.grid(row=1, column=1)
 
 #setup Checkboxes
 american = StringVar()
+american = StringVar()
+bagels = StringVar()
+barbeque = StringVar()
+brazilian = StringVar()
+breakfast = StringVar()
+buffets = StringVar()
+burgers = StringVar()
+cafeteria = StringVar()
+cajun = StringVar()
+caribbean = StringVar()
+cheesesteaks = StringVar()
 chinese = StringVar()
+cuban = StringVar()
+delis = StringVar()
+diners = StringVar()
+fastfood = StringVar()
+gastropubs = StringVar()
+indian = StringVar()
+italian = StringVar()
+japanese = StringVar()
+korean = StringVar()
+mediterranean = StringVar()
 mexican = StringVar()
+middleeastern = StringVar()
+noodles = StringVar()
+pizza = StringVar()
+ramen = StringVar()
+sandwiches = StringVar()
+seafood = StringVar()
 southern = StringVar()
+steakhouses = StringVar()
+sushi = StringVar()
+tacos = StringVar()
+thai = StringVar()
+vegetarian = StringVar()
+vietnamese = StringVar()
+
+# A master list of genres
+masterGenreList = [american,bagels,barbeque,brazilian,breakfast,buffets,burgers,cafeteria,cajun,caribbean,cheesesteaks,chinese,cuban,delis,diners,fastfood,gastropubs,indian,italian,japanese,korean,mediterranean,mexican,middleeastern,noodles,pizza,ramen,sandwiches,seafood,southern,steakhouses,sushi,tacos,thai,vegetarian,vietnamese]
 
 #Setup a frame containing the genre choices to make the gui look cleaner
 foodGenreFrame = LabelFrame(root, text="Select Acceptable food genres:", pady=10, padx=10)
@@ -145,20 +214,117 @@ foodGenreFrame = LabelFrame(root, text="Select Acceptable food genres:", pady=10
 americanBox = Checkbutton(foodGenreFrame, text="American", variable = american, onvalue="american")
 americanBox.deselect()
 americanBox.grid(row=1, column=0)
+bagelsBox = Checkbutton(foodGenreFrame, text="Bagels", variable = bagels, onvalue="bagels")
+bagelsBox.deselect()
+bagelsBox.grid(row=1, column=1)
+barbequeBox = Checkbutton(foodGenreFrame, text="Barbeque", variable = barbeque, onvalue="barbeque")
+barbequeBox.deselect()
+barbequeBox.grid(row=1, column=2)
+brazilianBox = Checkbutton(foodGenreFrame, text="Brazilian", variable = brazilian, onvalue="brazilian")
+brazilianBox.deselect()
+brazilianBox.grid(row=1, column=3)
+breakfastBox = Checkbutton(foodGenreFrame, text="Breakfast", variable = breakfast, onvalue="breakfast")
+breakfastBox.deselect()
+breakfastBox.grid(row=1, column=4)
+buffetsBox = Checkbutton(foodGenreFrame, text="Buffets", variable = buffets, onvalue="buffets")
+buffetsBox.deselect()
+buffetsBox.grid(row=1, column=5)
+burgersBox = Checkbutton(foodGenreFrame, text="Burgers", variable = burgers, onvalue="burgers")
+burgersBox.deselect()
+burgersBox.grid(row=2, column=0)
+cafeteriaBox = Checkbutton(foodGenreFrame, text="Cafeteria", variable = cafeteria, onvalue="cafeteria")
+cafeteriaBox.deselect()
+cafeteriaBox.grid(row=2, column=1)
+cajunBox = Checkbutton(foodGenreFrame, text="Cajun", variable = cajun, onvalue="cajun")
+cajunBox.deselect()
+cajunBox.grid(row=2, column=2)
+caribbeanBox = Checkbutton(foodGenreFrame, text="Caribbean", variable = caribbean, onvalue="caribbean")
+caribbeanBox.deselect()
+caribbeanBox.grid(row=2, column=3)
+cheesesteaksBox = Checkbutton(foodGenreFrame, text="Cheesesteaks", variable = cheesesteaks, onvalue="cheesesteaks")
+cheesesteaksBox.deselect()
+cheesesteaksBox.grid(row=2, column=4)
 chineseBox = Checkbutton(foodGenreFrame, text="Chinese", variable = chinese, onvalue="chinese")
 chineseBox.deselect()
-chineseBox.grid(row=1, column=1)
+chineseBox.grid(row=2, column=5)
+cubanBox = Checkbutton(foodGenreFrame, text="Cuban", variable = cuban, onvalue="cuban")
+cubanBox.deselect()
+cubanBox.grid(row=3, column=0)
+delisBox = Checkbutton(foodGenreFrame, text="Delis", variable = delis, onvalue="delis")
+delisBox.deselect()
+delisBox.grid(row=3, column=1)
+dinersBox = Checkbutton(foodGenreFrame, text="Diners", variable = diners, onvalue="diners")
+dinersBox.deselect()
+dinersBox.grid(row=3, column=2)
+fastfoodBox = Checkbutton(foodGenreFrame, text="Fast Food", variable = fastfood, onvalue="fast food")
+fastfoodBox.deselect()
+fastfoodBox.grid(row=3, column=3)
+gastropubsBox = Checkbutton(foodGenreFrame, text="Gastropubs", variable = gastropubs, onvalue="gastropubs")
+gastropubsBox.deselect()
+gastropubsBox.grid(row=3, column=4)
+indianBox = Checkbutton(foodGenreFrame, text="Indian", variable = indian, onvalue="indian")
+indianBox.deselect()
+indianBox.grid(row=3, column=5)
+italianBox = Checkbutton(foodGenreFrame, text="Italian", variable = italian, onvalue="italian")
+italianBox.deselect()
+italianBox.grid(row=4, column=0)
+japaneseBox = Checkbutton(foodGenreFrame, text="Japanese", variable = japanese, onvalue="japanese")
+japaneseBox.deselect()
+japaneseBox.grid(row=4, column=1)
+koreanBox = Checkbutton(foodGenreFrame, text="Korean", variable = korean, onvalue="korean")
+koreanBox.deselect()
+koreanBox.grid(row=4, column=2)
+mediterraneanBox = Checkbutton(foodGenreFrame, text="Mediterranean", variable = mediterranean, onvalue="mediterranean")
+mediterraneanBox.deselect()
+mediterraneanBox.grid(row=4, column=3)
 mexicanBox = Checkbutton(foodGenreFrame, text="Mexican", variable = mexican, onvalue="mexican")
 mexicanBox.deselect()
-mexicanBox.grid(row=2, column=0)
+mexicanBox.grid(row=4, column=4)
+middleeasternBox = Checkbutton(foodGenreFrame, text="Middle Eastern", variable = middleeastern, onvalue="middle eastern")
+middleeasternBox.deselect()
+middleeasternBox.grid(row=4, column=5)
+noodlesBox = Checkbutton(foodGenreFrame, text="Noodles", variable = noodles, onvalue="noodles")
+noodlesBox.deselect()
+noodlesBox.grid(row=5, column=0)
+pizzaBox = Checkbutton(foodGenreFrame, text="Pizza", variable = pizza, onvalue="pizza")
+pizzaBox.deselect()
+pizzaBox.grid(row=5, column=1)
+ramenBox = Checkbutton(foodGenreFrame, text="Ramen", variable = ramen, onvalue="ramen")
+ramenBox.deselect()
+ramenBox.grid(row=5, column=2)
+sandwichesBox = Checkbutton(foodGenreFrame, text="Sandwiches", variable = sandwiches, onvalue="sandwiches")
+sandwichesBox.deselect()
+sandwichesBox.grid(row=5, column=3)
+seafoodBox = Checkbutton(foodGenreFrame, text="Seafood", variable = seafood, onvalue="seafood")
+seafoodBox.deselect()
+seafoodBox.grid(row=5, column=4)
 southernBox = Checkbutton(foodGenreFrame, text="Southern", variable = southern, onvalue="southern")
 southernBox.deselect()
-southernBox.grid(row=2, column=1)
+southernBox.grid(row=5, column=5)
+steakhousesBox = Checkbutton(foodGenreFrame, text="Steakhouses", variable = steakhouses, onvalue="steakhouses")
+steakhousesBox.deselect()
+steakhousesBox.grid(row=6, column=0)
+sushiBox = Checkbutton(foodGenreFrame, text="Sushi", variable = sushi, onvalue="sushi")
+sushiBox.deselect()
+sushiBox.grid(row=6, column=1)
+tacosBox = Checkbutton(foodGenreFrame, text="Tacos", variable = tacos, onvalue="tacos")
+tacosBox.deselect()
+tacosBox.grid(row=6, column=2)
+thaiBox = Checkbutton(foodGenreFrame, text="Thai", variable = thai, onvalue="thai")
+thaiBox.deselect()
+thaiBox.grid(row=6, column=3)
+vegetarianBox = Checkbutton(foodGenreFrame, text="Vegetarian", variable = vegetarian, onvalue="vegetarian")
+vegetarianBox.deselect()
+vegetarianBox.grid(row=6, column=4)
+vietnameseBox = Checkbutton(foodGenreFrame, text="Vietnamese", variable = vietnamese, onvalue="vietnamese")
+vietnameseBox.deselect()
+vietnameseBox.grid(row=6, column=5)
+
 
 #Setup Action buttons
 foodButtonFrame = LabelFrame(root, text="Show me where I'm eating!", padx=5, pady=5)
-#foodButtonFrame.pack(padx=10,pady=10)
-foodButton = Button(foodButtonFrame, text="FOOD!", command=myClick, bg="red", pady=20, padx=20)
+foodButton = Button(foodButtonFrame, text="FOOD!", command=check_empty_zipCode, bg="red", pady=20, padx=20)
+#foodButton = Button(foodButtonFrame, text="FOOD!", command=myClick, bg="red", pady=20, padx=20)
 foodButton.pack()
 
 # setup a button to clear/reset the entry form

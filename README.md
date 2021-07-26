@@ -2,6 +2,14 @@
 ## Random Restaurant Picker
 ---
 
+### Version 0.04 - Sam Davis
+Added 32 food genre options.
+
+---
+### Version 0.03 - Sam Davis
+A function for selecting a search radius has been added.
+
+---
 ### Version 0.02 - Sam Davis
 
 The only two files that matter are *Food_tkinter.py* (main program) and *Yelp_Functions.py* (functions relating to yelp). To a lesser extent, *food.ico* is also important.
