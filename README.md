@@ -1,7 +1,17 @@
 # FOOD - Food Options Obtained Decisively
 ## Random Restaurant Picker
+
+   Food_tkinter.py does all the work. It imports the functions from Yelp_Functions.py. They should be in the same directory. Food_tkinter is the one to execute.
+   
 ---
 
+### Version 1.0 - Sam Davis
+ - Added input verification
+ - Now it allows the user to reject the recommendation
+ - If you reject the recommendaion, it reselects a choice using the same parameters
+ - If you accept the choice the application closes automatically
+
+---
 ### Version 0.04 - Sam Davis
 Added 32 food genre options.
 

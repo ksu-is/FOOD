@@ -2,26 +2,33 @@ from tkinter import *
 from tkinter import messagebox
 from Yelp_Functions import *
 import random
-import math
-
+import webbrowser
 
 # A function to ensure a required field is not empty. This used to 
 # prevent the zip code box from being left empty
-# credit to stack overflow user Er. M S Dandyan
+# and ensure at least one genre is selected
 def check_empty_choices() :
 
+    #get the zip code entered and convert it to a string
     digits = str(zipCodeEntry.get())
 
+    #Check to see if something was entered
     if digits == "":
+
+        #if zip code is blank, display warning and return
         messagebox.showwarning(title="No Zip Code",message="A zipcode must be entered.")
         return
     else:
+        #if a zip code was entered, check that it is exactly 5 characters long
         if len(digits) == 5:
+            #if it is, try to convert to an integer
             try:
                 int(digits)
+            #If it will not convert, display warning and return    
             except:
                 messagebox.showwarning(title="Invalid Zip Code", message="Zip Code must be all digits.")
                 return
+        #If the zip code was too long or too short, display an error and return
         else:
             messagebox.showwarning(title="Invalid Zip Code", message="Zip Code must be 5 numeric digits.")    
             return
@@ -39,10 +46,13 @@ def check_empty_choices() :
     global genres
     genres = ", ".join(genresList)
     
+    #Check to see if at least one genre was checked
     if genres:
         myClick()
+    #If not, display error and return
     else:
         messagebox.showwarning(title="No Genres",message="You must select at least one food genre.")
+        return
 
 # This function picks a random resturant from the Yelp results
 def rand_resturaunt(results_list):
@@ -62,9 +72,18 @@ def rand_resturaunt(results_list):
         # Check to see if this entry's id matches the "winning" id.
         if i["id"] == rest_id[lucky_strike]:
             #This pops up the result window
-            outMessage = "Congratulations! You're going to", str(i["name"]), "\n", str(i["url"])
+            name = str(i["name"])
+            print ("Name:", name)
+            outMess = 'Is', name, 'okay?'
+            outMessage = ' '.join(outMess)
+            print (type(outMessage))
             isThisOk = messagebox.askyesno("Choice Made!", outMessage)
-            print(isThisOk)
+            if isThisOk:
+                messagebox.showinfo("Enjoy", "Great! Ejoy!")
+                root.destroy()
+            else:
+                #return
+                rand_resturaunt(results)
         else:
             pass
 
@@ -112,17 +131,16 @@ def clearAll():
 # The logic for what happens when you clike the big red button.
 def myClick():
 
-    # Assemble and display the confirmation message
-    outputMessage = "Zip Code: " + str(zipCodeEntry.get() + "\n\nGenres selected: \n\n" + genres + "\n\nProceed?")
-    resultAcceptable = messagebox.askyesno("Your Selections", outputMessage)
-    
     # Get the zip code from the input
     zipCode = zipCodeEntry.get()
     
-
     #Get the radius entry
     radiusValue = int(radius.get())
-    
+
+    # Assemble and display the confirmation message
+    outputMessage = "Searching within " + str(radiusValue) + " miles of zip code " + str(zipCode) + " for the following genres: \n" + genres + "\n\nProceed?"
+    resultAcceptable = messagebox.askyesno("Your Selections", outputMessage)
+
     #convert the radius to meters, since that is what yelp uses
     if radiusValue == 1:
         radiusValue = 1610
@@ -138,12 +156,21 @@ def myClick():
     if resultAcceptable:
         #setup the search terms
         rest_params = {'term': genres,'location':zipCode, 'radius':radiusValue}
+        #print (rest_params)
         #call the yelp function to query the yelp database
         parsed = query_yelp (rest_params)
+        #print (parsed)
         #parse the results into a json formatted list
+        global results 
         results = parse_reply (parsed)
-        # call the function to randomly choose the resturaunt
-        rand_resturaunt(results)
+        #print (results)
+        if results:
+            # call the function to randomly choose the resturaunt
+            rand_resturaunt(results)
+        else:
+            #Display warning that no results were found.
+            messagebox.showwarning(title="No Options Found", message="We found no options. Try either widening the radius or selecting more options")
+     
 
     #If not confirmed, reset and start again
     else:
