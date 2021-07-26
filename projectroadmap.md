@@ -1,4 +1,6 @@
-- [X] The gui and logic both work. 
+- [X] Create the functions to interface with Yelp
+- [X] Create the functions to create the GUI
+- [X] Tie the gui and yelp logic together
 - [ ] Need to add catches for invalid entries
 - [ ] Need to add more options
 - [ ] Need to add comments
@@ -7,3 +9,4 @@
 - [ ] Need to polish the UI
 - [ ] Add a round button?
 - [X] Need to clean up unecessary files.
+- [X] Add radius seatch
