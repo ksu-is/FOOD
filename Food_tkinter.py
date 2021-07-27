@@ -2,7 +2,7 @@ from tkinter import *
 from tkinter import messagebox
 from Yelp_Functions import *
 import random
-import webbrowser
+
 
 # A function to ensure a required field is not empty. This used to 
 # prevent the zip code box from being left empty
@@ -73,14 +73,15 @@ def rand_resturaunt(results_list):
         if i["id"] == rest_id[lucky_strike]:
             #This pops up the result window
             name = str(i["name"])
-            print ("Name:", name)
+            #Ask if that is acceptable
             outMess = 'Is', name, 'okay?'
             outMessage = ' '.join(outMess)
-            print (type(outMessage))
             isThisOk = messagebox.askyesno("Choice Made!", outMessage)
+            #if it is acceptable, tell them to enjoy and close the program
             if isThisOk:
                 messagebox.showinfo("Enjoy", "Great! Ejoy!")
                 root.destroy()
+            #If not, make another attempt                
             else:
                 #return
                 rand_resturaunt(results)

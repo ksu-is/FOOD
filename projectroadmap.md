@@ -16,5 +16,6 @@
 - [X] Loop the "Not acceptable" option to pick again
 
 ### Phase 2:
-- [ ] Add Option to reset parameters after pick not accepted
+- [ ] Add Option to reset parameters after pick not accepted.
 - [ ] Generate clickable link to resturaunt's yelp page.
+- [ ] Prevent Duplicate Choices from appearing.
