@@ -19,3 +19,4 @@
 - [ ] Add Option to reset parameters after pick not accepted.
 - [ ] Generate clickable link to resturaunt's yelp page.
 - [ ] Prevent Duplicate Choices from appearing.
+- [ ] Add rating threshold.

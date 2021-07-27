@@ -8,7 +8,7 @@ headers = {'Authorization': 'Bearer %s' % api_key}
 
 url='https://api.yelp.com/v3/businesses/search'
 
-search_terms = {'categories':'mexican','location':'30144', 'radius':'2000'}
+search_terms = {'categories':'mexican','location':'30102', 'radius':'8047'}
 #search_terms = {'categories':'mexican','location':'30144'}
 
 # Making a get request to the API
@@ -21,19 +21,21 @@ parsed_input = json.loads(req.text)
 
 results = parsed_input["businesses"]
 item_count = 0
-for i in results:
-    if i["name"] == "Tacos Del Chavo":
-        
-        #print (i)
-        break
-    else:
-        pass
+#for i in results:
+#    if i["name"] == "Tacos Del Chavo":
+#        
+#        #print (i)
+#        break
+#    else:
+#        pass
 
 rest_id = []
 for i in results:
     item_count += 1
 #    print ("<a href=\"" + i["url"] + "\">" + i["name"] + "</a>")
     rest_id.append(i["id"])
+    
+print (i["categories"])
 
 print (results)
 print ("Count:", item_count)

@@ -156,8 +156,9 @@ def myClick():
     # Confirm the pending search before proceeding
     if resultAcceptable:
         #setup the search terms
-        rest_params = {'term': genres,'location':zipCode, 'radius':radiusValue}
-        #print (rest_params)
+        print (genres)
+        rest_params = {'categories':genres,'location':zipCode, 'radius':radiusValue}
+        print (rest_params)
         #call the yelp function to query the yelp database
         parsed = query_yelp (rest_params)
         #print (parsed)
